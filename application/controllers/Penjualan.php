@@ -10,7 +10,13 @@ class Penjualan extends CI_Controller {
 
 	function penjualan()
 	{
-		
+		$data = array(
+			"menu_active" 	=>	""
+		);
+		$this->load->view('general/header');
+		$this->load->view('general/navbar',$data);
+		$this->load->view('penjuala/penjualan',$data);
+		$this->load->view('general/footer');	
 	}
 }
 // UNSET THINGS

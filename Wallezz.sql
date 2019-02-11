@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50505
 Source Host           : 127.0.0.1:3306
-Source Database       : wallez
+Source Database       : wallezz
 
 Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-02-11 15:07:23
+Date: 2019-02-11 17:12:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,15 +59,23 @@ CREATE TABLE `master_barang` (
   `nama_barang` varchar(255) DEFAULT NULL,
   `harga_beli` varchar(255) DEFAULT NULL,
   `harga_jual` varchar(255) DEFAULT NULL,
-  `satuan` varchar(255) DEFAULT NULL,
-  `kategori` varchar(255) DEFAULT NULL,
+  `satuan` int(11) DEFAULT NULL,
+  `kategori` int(11) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nama barang` (`nama_barang`),
+  KEY `kategori` (`kategori`),
+  KEY `satuan` (`satuan`),
+  CONSTRAINT `kategori` FOREIGN KEY (`kategori`) REFERENCES `master_kategori` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `satuan` FOREIGN KEY (`satuan`) REFERENCES `master_satuan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_barang
 -- ----------------------------
+INSERT INTO `master_barang` VALUES ('1', 'LOG1', 'Knalpot', '4000', '5000', '2', '1', '1');
+INSERT INTO `master_barang` VALUES ('3', 'LOG2', 'Knalpot Toyota544', '4000', '5000', '2', '1', '1');
+INSERT INTO `master_barang` VALUES ('4', 'CAI1', 'Oli Mesran Biru', '4500', '5000', '4', '3', '40');
 
 -- ----------------------------
 -- Table structure for master_kategori
@@ -76,12 +84,17 @@ DROP TABLE IF EXISTS `master_kategori`;
 CREATE TABLE `master_kategori` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `nama_kategori` (`nama_kategori`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_kategori
 -- ----------------------------
+INSERT INTO `master_kategori` VALUES ('3', 'Cair');
+INSERT INTO `master_kategori` VALUES ('1', 'Logam');
+INSERT INTO `master_kategori` VALUES ('4', 'Pelumas');
+INSERT INTO `master_kategori` VALUES ('2', 'Plastik');
 
 -- ----------------------------
 -- Table structure for master_satuan
@@ -90,12 +103,18 @@ DROP TABLE IF EXISTS `master_satuan`;
 CREATE TABLE `master_satuan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_satuan` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unik satuan` (`nama_satuan`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_satuan
 -- ----------------------------
+INSERT INTO `master_satuan` VALUES ('5', 'Box');
+INSERT INTO `master_satuan` VALUES ('1', 'Buah');
+INSERT INTO `master_satuan` VALUES ('3', 'Butir');
+INSERT INTO `master_satuan` VALUES ('4', 'Liter');
+INSERT INTO `master_satuan` VALUES ('2', 'Unit');
 
 -- ----------------------------
 -- Table structure for penjualan

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-02-11 17:12:34
+Date: 2019-02-11 20:05:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,6 @@ CREATE TABLE `barang_terjual` (
   `kode_barang` varchar(255) DEFAULT NULL,
   `jumlah` varchar(255) DEFAULT NULL,
   `harga_satuan` varchar(255) DEFAULT NULL,
-  `harga_total` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -73,8 +72,8 @@ CREATE TABLE `master_barang` (
 -- ----------------------------
 -- Records of master_barang
 -- ----------------------------
-INSERT INTO `master_barang` VALUES ('1', 'LOG1', 'Knalpot', '4000', '5000', '2', '1', '1');
-INSERT INTO `master_barang` VALUES ('3', 'LOG2', 'Knalpot Toyota544', '4000', '5000', '2', '1', '1');
+INSERT INTO `master_barang` VALUES ('1', 'LOG1', 'Knalpot', '4000', '5000', '2', '1', '10');
+INSERT INTO `master_barang` VALUES ('3', 'LOG2', 'Knalpot Toyota544', '4000', '5000', '2', '1', '10');
 INSERT INTO `master_barang` VALUES ('4', 'CAI1', 'Oli Mesran Biru', '4500', '5000', '4', '3', '40');
 
 -- ----------------------------
@@ -105,11 +104,12 @@ CREATE TABLE `master_satuan` (
   `nama_satuan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unik satuan` (`nama_satuan`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_satuan
 -- ----------------------------
+INSERT INTO `master_satuan` VALUES ('8', 'Botol');
 INSERT INTO `master_satuan` VALUES ('5', 'Box');
 INSERT INTO `master_satuan` VALUES ('1', 'Buah');
 INSERT INTO `master_satuan` VALUES ('3', 'Butir');
@@ -125,9 +125,11 @@ CREATE TABLE `penjualan` (
   `tgl_faktur` date DEFAULT NULL,
   `no_faktur` varchar(255) DEFAULT NULL,
   `nama_konsumen` varchar(255) DEFAULT NULL,
+  `harga_total` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of penjualan
 -- ----------------------------
+INSERT INTO `penjualan` VALUES ('1', '2019-02-11', '2019FEB11/1', 'sulaiman', '10000');

@@ -76,3 +76,5 @@ $route['delete-kategori/(:num)']						= 'Gudang/deleteKategori/$1';
 
 
 $route['penjualan']										= 'Penjualan/penjualan';
+$route['submit-penjualan']								= 'Penjualan/submitPenjualan';
+$route['cari-info-barang']								= 'Penjualan/cariInfoBarang';

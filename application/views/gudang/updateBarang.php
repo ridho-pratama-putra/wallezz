@@ -31,6 +31,20 @@
 					<input type="number" min="0" class="form-control" id="" name="harga_jual" value="<?=$data[0]->harga_jual?>">
 				</div>
 				<div class="form-group">
+					<label for="" >Satuan</label>
+					<select name="satuan" class="form-control">
+						<?php
+						foreach ($satuan as $key => $value) { ?>
+							<option value="<?=$value->id?>" <?=($value->id == $data[0]->satuan) ? "selected=''" : ""?> ><?=$value->nama_satuan?></option>
+						<?php }
+						?>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="" >Kategori</label>
+					<input type="text" class="form-control" id=""  name="kategori" value="<?=$data[0]->nama_kategori?>" readonly="">
+				</div>
+				<div class="form-group">
 					<label for="" >Stok</label>
 					<input type="number" min="0" class="form-control" id="" name="stok" value="<?=$data[0]->stok?>">
 				</div>

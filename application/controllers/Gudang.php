@@ -153,7 +153,10 @@ class Gudang extends CI_Controller {
 		if ($read !== 0) {
 			$data = array(
 				"menu_active" 	=>	"",
-				"data"			=>	$this->model->read("master_barang",array("id"=>$id))->result()
+				"data"			=>	
+				$this->model->rawQuery("SELECT master_barang.*, master_kategori.nama_kategori FROM master_barang LEFT JOIN master_kategori ON master_barang.kategori = master_kategori.id WHERE master_barang.id='".$id."'")->result(),
+				"satuan"		=>	$this->model->readS("master_satuan")->result(),
+				"kategori"		=>	$this->model->readS("master_kategori")->result()
 			);
 			$this->load->view('general/header');
 			$this->load->view('general/navbar',$data);
@@ -173,10 +176,11 @@ class Gudang extends CI_Controller {
 				"id"	=>	$this->input->post("id_barang")
 			),
 			array(
-				"nama_barang" => $this->input->post("nama_barang"),
-				"harga_beli" => $this->input->post("harga_beli"),
-				"harga_jual" => $this->input->post("harga_jual"),
-				"stok" => $this->input->post("stok")
+				"nama_barang" 	=> $this->input->post("nama_barang"),
+				"harga_beli" 	=> $this->input->post("harga_beli"),
+				"harga_jual" 	=> $this->input->post("harga_jual"),
+				"satuan" 		=> $this->input->post("satuan"),
+				"stok" 			=> $this->input->post("stok")
 			)
 		);
 		$query = json_decode($query);
